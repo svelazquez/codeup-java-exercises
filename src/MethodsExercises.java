@@ -20,13 +20,32 @@ public class MethodsExercises {
         System.out.println(fac(facNum));
 
         System.out.println("Enter num of sides for a pair of dice.");
-        System.out.println("Roll dice?");
+        System.out.println("Roll dice");
 
 
-        System.out.println("Enter a number between 1 and 10: ");
-//        int userInput = getInteger(1,10);
+        int userInput = getInt(1,10);
 
 
+
+    }
+
+    public static int getInt(){
+        Scanner s = new Scanner(System.in);
+        int num = s.nextInt();
+        return num;
+    }
+
+    public static int getInt(int min, int max){
+        System.out.println("Input # between " + min + " and " + max + ": ");
+        int number = getInt();
+
+        if(number >= min && number <= max){
+            return number;
+        } else {
+            System.out.println(number + " is outside the range of " + min + " and " + max);
+
+            return getInt(min, max);
+        }
     }
 
     private static int add(int num1, int num2){
