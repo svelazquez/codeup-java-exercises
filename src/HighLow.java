@@ -15,7 +15,7 @@ public class HighLow {
 
     public static void playGame(){
         Random rand = new Random(0);
-
+        int random = rand.nextInt(100);
 
         System.out.println("Enter a number");
         int num = getInt();
