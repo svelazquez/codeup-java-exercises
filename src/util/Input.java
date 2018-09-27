@@ -2,35 +2,44 @@ package util;
 import java.util.Scanner;
 
 public class Input {
-    Scanner s = new Scanner(System.in);
+    private Scanner scan;
 
-
-    public static void main(String[] args) {
-//        yesNo();
+    public Input() {
+        scan = new Scanner(System.in).useDelimiter("\n");
     }
 
-//    String getString(){
-//
-//    }
-//    boolean yesNo(){
-//        String answer = s.next();
-//
-//        return "y".equalsIgnoreCase(answer.charAt(0));
-//
-//    }
-//    int getInt(int min, int max){
-//
-//    }
-//    int getInt(){
-//
-//    }
-//    double getDouble(double min, double max){
-//
-//    }
-//    double getDouble(){
-//
-//    }
 
+    public String getString() {
+        return scan.next();
 
+    }
 
+    public String getString(String prompt) {
+        System.out.println(prompt);
+        return getString();
+    }
+
+    public int getInt() {
+        return scan.nextInt();
+    }
+
+    public int getInt(int min, int max) {
+        System.out.println("Input a number between " + min + " and " + max);
+        return getInt();
+    }
+
+    public double getDouble() {
+        return scan.nextDouble();
+    }
+
+    public double getDouble(double min, double max) {
+        System.out.println("Input a number between " + min + " and " + max);
+        return getDouble();
+    }
+
+    public boolean yesNo() {
+        System.out.println("input yes or y to continue");
+        String userInput = getString();
+        return userInput.equalsIgnoreCase("y") || userInput.equalsIgnoreCase("yes");
+    }
 }
