@@ -19,6 +19,16 @@ public class InputTest {
         }else {
             System.out.println(("k"));
         }
+
+        System.out.println(("Enter a binary number"));
+        String user = input.getString();
+        int bin = input.getBinary(user);
+        System.out.println("Your number is " + bin);
+
+        System.out.println(("Enter a hexidecimal number: "));
+        String userNum = input.getString();
+        int hex = input.getHexadecimal(userNum);
+        System.out.println("Your number is " + hex);
     }
 
 }

@@ -20,7 +20,18 @@ public class Input {
     }
 
     public int getInt() {
-        return scan.nextInt();
+        int input;
+        try {
+            input = Integer.valueOf(getString());
+            return input;
+        } catch (NumberFormatException e ) {
+            System.out.println("Input is not a valid integer");
+            return getInt();
+        }
+    }
+    public int getInt(String prompt){
+        System.out.println(prompt);
+        return getInt();
     }
 
     public int getInt(int min, int max) {
@@ -29,7 +40,19 @@ public class Input {
     }
 
     public double getDouble() {
-        return scan.nextDouble();
+        double input;
+        try {
+            input = Double.valueOf(getString());
+            return input;
+        } catch (NumberFormatException e) {
+            System.out.println("Input is not valid");
+            return getDouble();
+        }
+    }
+
+    public double getDouble(String prompt){
+        System.out.println(prompt);
+        return getDouble();
     }
 
     public double getDouble(double min, double max) {
@@ -37,8 +60,17 @@ public class Input {
         return getDouble();
     }
 
+    public int getBinary(String num){
+        return Integer.valueOf(num, 2);
+    }
+
+
+    public int getHexadecimal(String num){
+        return Integer.valueOf(num, 16);
+    }
+
     public boolean yesNo() {
-        System.out.println("input yes or y to continue");
+        System.out.println("Input yes or y to continue");
         String userInput = getString();
         return userInput.equalsIgnoreCase("y") || userInput.equalsIgnoreCase("yes");
     }
