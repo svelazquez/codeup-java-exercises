@@ -4,8 +4,11 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class GradesApplication {
+
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
+
+
         //create students HasMap. keys are string github usernames.
         //values are Student objects
         HashMap<String, Student> students = new HashMap<>();
@@ -22,7 +25,6 @@ public class GradesApplication {
         twi.addGrade(100);
         twi.addGrade(99);
         twi.addGrade(100);
-        System.out.println(twi.getGradeAverage());
 
         rainbow.addGrade(79);
         rainbow.addGrade(81);
@@ -48,10 +50,17 @@ public class GradesApplication {
         students.put("cry-f0al", flutter);
         students.put("partycannon", pinkie);
         students.put("ultraRARITY", rarity);
-        boolean confirm = true;
-        while(confirm) {
-            System.out.println("Welcome!\n" +
-                    "Here are the github usernames of our students:\n\n"
+        String answer = "yes";
+        System.out.println("W E L C O M E!\n" + "Student grades: ");
+        for (HashMap.Entry<String, Student> entry : students.entrySet()) {
+            System.out.println(entry.getValue().getGrades());
+        }
+        System.out.println();
+
+        do {
+
+
+            System.out.println("Here are the github usernames of our students:\n\n"
                     + students.keySet());
 
             System.out.println("\nWhich student would you like to see more information on?\n");
@@ -59,16 +68,17 @@ public class GradesApplication {
 
             System.out.println("Name: " + students.get(input).getName()
                     + " - Github Username: " + input);
+            //DISPLAY ALL GRADES IN ADDITION TO AVERAGE
+            System.out.println("Student Grades: " + students.get(input).getGrades());
+            //DISPLAYS AVERAGE OF STUDENT GRADES
             System.out.println("Current Average: " + students.get(input).getGradeAverage());
 
             System.out.println("Would you like to see another student?");
-            String yes = s.next();
-            if(!yes.equalsIgnoreCase("y") || !yes.equalsIgnoreCase("yes")){
-                confirm = false;
-            }
-        }
+            answer = s.next();
+
+
+        }while (!answer.toLowerCase().contains("n"));
 
 
     }
-
 }

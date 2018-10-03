@@ -22,6 +22,12 @@ public class Student {
         grades.add(grade);
     }
 
+    //returns grades
+    public ArrayList<Integer> getGrades() {
+        return grades;
+    }
+
+
     //returns the average of the student's grades
     public double getGradeAverage(){
         double total = 0;
