@@ -5,8 +5,70 @@ import java.nio.file.*;
 import util.Input;
 
 
+
 public class ContactsApplication {
-    public static final Path FILEPATH = Paths.get("contacts.txt");
+    public static final Path FILEPATH = Paths.get("src/contacts","contacts.txt");
+
+    public static void viewContacts(){
+        try{
+
+            List<String> contactList = Files.readAllLines(FILEPATH);
+
+            for (int i = 0; i < contactList.size(); i += 1) {
+                System.out.println((i + 1) + ": " + contactList.get(i));
+            }
+
+
+
+        } catch (IOException e){
+            System.out.println("die view contacts");
+        }
+
+    }
+
+    public static void addContact(String contact){
+        try{
+            Files.write(
+                    FILEPATH,
+                    Arrays.asList(contact),
+                    StandardOpenOption.APPEND
+            );
+        } catch (IOException e ){
+            System.out.println("die add contact");
+        }
+    }
+
+    public static void searchContact(String name){
+        try {
+            List<String> contactList = Files.readAllLines(FILEPATH);
+
+            for (String contact : contactList) {
+                if (contact.contains(name)) {
+                    System.out.println(contact);
+                }
+            }
+
+        } catch (IOException e ){
+            System.out.println("die search contact");
+        }
+    }
+
+    public static void deleteContact(String name){
+        try{
+            List<String> contactList = Files.readAllLines(FILEPATH);
+            List<String> tempList = new ArrayList<>();
+
+            for (String contact : contactList) {
+                if (!contact.contains(name)) {
+                    tempList.add(contact);
+                }
+            }
+            Files.write(FILEPATH, tempList);
+
+        } catch (IOException e){
+            System.out.println("die delete contact");
+        }
+    }
 
     public static void main(String[] args) {
 
@@ -26,36 +88,27 @@ public class ContactsApplication {
                     System.out.println("\n");
                     break;
                 case 2: // add a contact;
+                    System.out.println("Enter contact in format: Name 800-444-4444");
+                    String contact = input.getString();
+                    addContact(contact);
                     break;
                 case 3: //search contact;
+                    System.out.println("Enter name to search");
+                    contact = input.getString();
+                    searchContact(contact);
                     break;
                 case 4: //delete contact;
+                    System.out.println("Enter name to delete");
+                    contact = input.getString();
+                    deleteContact(contact);
                     break;
-                default: //exit program;
+                case 5: //exit program;
+                    answer = false;
                     break;
             }
             answer = input.yesNo();
         } while (answer);
-
-
-
-    }
-
-    public static void viewContacts(){
-        try{
-
-            List<String> contactList = Files.readAllLines(FILEPATH);
-
-            for (int i = 0; i < contactList.size(); i += 1) {
-                System.out.println((i + 1) + ": " + contactList.get(i));
-            }
-
-
-
-        } catch (IOException e){
-            System.out.println("die");
-        }
-
+        System.out.println("Alright, goodbye");
     }
 
 }
